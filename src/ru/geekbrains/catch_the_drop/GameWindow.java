@@ -19,7 +19,8 @@ public class GameWindow extends JFrame{
 
     }
     private static void onRepaint (Graphics g){  // Добавили поле в котором мы можем рисовать
-        g.fillOval(10,10,200,100);
+        g.fillOval(10 , 10, 200, 100);
+        g.drawLine(200, 200, 400, 300);
     }
     private static class GameField extends JPanel{   // Панели на которых мы можем рисовать
         @Override
