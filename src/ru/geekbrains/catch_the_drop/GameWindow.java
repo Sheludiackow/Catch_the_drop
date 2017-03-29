@@ -3,6 +3,8 @@ package ru.geekbrains.catch_the_drop;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class GameWindow extends JFrame{
@@ -28,6 +30,21 @@ public class GameWindow extends JFrame{
         gameWindow.setResizable(false);   // Запрет изменения размера окна
         last_frame_time = System.nanoTime(); // Команда возвращает текущее время в наносекундах
         GameField gameField = new GameField();   // Создае обьект и...
+        gameField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {    // Ловим событие клика мыши
+                int x = e.getX();
+                int y = e.getY();
+                float drop_right = drop_left + drop.getWidth(null);         // Определяем попадает ли клик мыши в каплю
+                float drop_bottom = drop_top + drop.getHeight(null);
+                boolean is_drop = x >= drop_left && x <= drop_right && y >= drop_top && y <= drop_bottom;
+                if (is_drop){                     // Если каплю поймали то
+                    drop_top = -100;              // Капля появляется снова
+                    drop_left = (int) (Math.random() * (gameField.getWidth() - drop.getWidth(null)));    // В случайном месте
+                    drop_v = drop_v + 20;         // Увеличиваем скорость капли
+                }
+            }
+        });
         gameWindow.add(gameField);               // добавляем его в окно.
         gameWindow.setVisible(true);      // Делаем окно видимым
 
