@@ -17,6 +17,7 @@ public class GameWindow extends JFrame{
     private static float drop_left = 200;    // Переменные положения капли
     private static float drop_top = -100;
     private static float drop_v = 200;      // Скорость нашей капли
+    private static int score;               // Переменная для подсчета очков
 
 
     public static void main(String[] args) throws IOException {
@@ -42,6 +43,8 @@ public class GameWindow extends JFrame{
                     drop_top = -100;              // Капля появляется снова
                     drop_left = (int) (Math.random() * (gameField.getWidth() - drop.getWidth(null)));    // В случайном месте
                     drop_v = drop_v + 20;         // Увеличиваем скорость капли
+                    score++;        // Плюсуем очки
+                    gameWindow.setTitle("Score: " + score); // Отображаем в шапке подсчет очков
                 }
             }
         });
