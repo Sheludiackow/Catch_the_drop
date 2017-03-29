@@ -40,7 +40,7 @@ public class GameWindow extends JFrame{
         drop_top = drop_top + drop_v * delta_time;   // Приводим каплю в движение согласно delta_time
         g.drawImage(background, 0,0, null);
         g.drawImage(drop, (int) drop_left, (int) drop_top, null);  // Применили переменные положения капли и обрезали дробную часть
-//        g.drawImage(game_over, 180,120, null);
+        if (drop_top > gameWindow.getHeight()) g.drawImage(game_over, 280,120, null);  // Если капля вылетает за границу экраана то Game over
 
     }
 
